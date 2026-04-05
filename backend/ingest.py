@@ -10,8 +10,8 @@ from supabase import create_client, Client
 load_dotenv()
 
 url: str = os.getenv("SUPABASE_URL")
-key: str = os.getenv("SUPABASE_KEY")
-supabase: Client = create_client(url, key)
+service_key: str = os.getenv("SUPABASE_SERVICE_KEY")
+supabase: Client = create_client(url, service_key)
 
 test_row = {
     "metric": "test connection",
