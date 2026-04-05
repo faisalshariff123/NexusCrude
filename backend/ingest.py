@@ -6,8 +6,25 @@ import io
 import re
 from openai import OpenAI
 from dotenv import load_dotenv
-
+from supabase import create_client, Client
 load_dotenv()
+
+url: str = os.getenv("SUPABASE_URL")
+key: str = os.getenv("SUPABASE_KEY")
+supabase: Client = create_client(url, key)
+
+test_row = {
+    "metric": "test connection",
+    "value": "1",
+    "unit": "test",
+    "year": "2026",
+    "notes": "testing supabase connection",
+    "source": "test"
+}
+
+result = supabase.table("production_data").insert(test_row).execute()
+print("✓ connection works, inserted:", result.data)
+
 
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
