@@ -22,7 +22,7 @@ test_row = {
     "source": "test"
 }
 
-result = supabase.table("production_data").insert(test_row).execute()
+result = supabase.table("production_data").select("*").execute()
 print("✓ connection works, inserted:", result.data)
 
 
